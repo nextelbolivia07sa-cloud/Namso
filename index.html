@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXTEL WORLD LIFE</title>
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:linear-gradient(135deg,#000000,#1a0000);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+background:#0d0d0d;
+padding:30px;
+border-radius:15px;
+width:340px;
+box-shadow:0 0 25px #ff000060;
+}
+
+h1{
+text-align:center;
+color:#ff1a1a;
+margin-bottom:25px;
+}
+
+.card-preview{
+background:linear-gradient(135deg,#330000,#ff0000);
+border-radius:15px;
+padding:20px;
+height:170px;
+margin-bottom:25px;
+box-shadow:0 0 20px #ff000070;
+position:relative;
+}
+
+.chip{
+width:40px;
+height:30px;
+background:gold;
+border-radius:5px;
+margin-bottom:25px;
+}
+
+.card-number{
+letter-spacing:3px;
+font-size:18px;
+margin-bottom:20px;
+}
+
+.card-exp{
+position:absolute;
+bottom:15px;
+right:20px;
+font-size:14px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+background:#1a1a1a;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:10px;
+background:#ff0000;
+border:none;
+border-radius:10px;
+font-size:16px;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#cc0000;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+margin-top:15px;
+color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>NEXTEL WORLD LIFE</h1>
+
+<div class="card-preview">
+
+<div class="chip"></div>
+
+<div class="card-number" id="previewNumber">
+0000 0000 0000 0000
+</div>
+
+<div class="card-exp" id="previewExp">
+MM/AA
+</div>
+
+</div>
+
+<input type="text" id="number" placeholder="Número de tarjeta" maxlength="19">
+
+<input type="text" id="exp" placeholder="Fecha vencimiento MM/AA" maxlength="5">
+
+<button onclick="agregar()">AGREGAR TARJETA</button>
+
+<div class="footer">
+NEXTEL WORLD LIFE
+</div>
+
+</div>
+
+<script>
+
+const number=document.getElementById("number")
+const exp=document.getElementById("exp")
+
+number.addEventListener("input",()=>{
+
+let valor=number.value.replace(/\D/g,"").substring(0,16)
+
+let formato=valor.match(/.{1,4}/g)
+
+if(formato){
+number.value=formato.join(" ")
+document.getElementById("previewNumber").innerText=formato.join(" ")
+}else{
+document.getElementById("previewNumber").innerText="0000 0000 0000 0000"
+}
+
+})
+
+exp.addEventListener("input",()=>{
+
+let valor=exp.value.replace(/\D/g,"").substring(0,4)
+
+if(valor.length>=3){
+exp.value=valor.substring(0,2)+"/"+valor.substring(2)
+}else{
+exp.value=valor
+}
+
+document.getElementById("previewExp").innerText=exp.value
+
+})
+
+function agregar(){
+alert("Tarjeta agregada correctamente")
+}
+
+</script>
+
+</body>
+</html>
